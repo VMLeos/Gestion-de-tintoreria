@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tintorería · Gestión de Prendas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4C16 4 13 7 13 11V14H8L10 36H30L32 14H27V11C27 7 24 4 20 4Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M15 14V11C15 8.2 17.2 6 20 6C22.8 6 25 8.2 25 11V14" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="20" cy="23" r="3" fill="currentColor" opacity="0.4"/>
+        </svg>
+        <span>Tintorería</span>
+      </div>
+      <nav>
+        <span id="sync-indicator" class="sync-indicator sync-ok">✓ Guardado</span>
+        <button class="nav-btn active" id="btn-nueva" onclick="showSection('nueva')">Nueva Prenda</button>
+        <button class="nav-btn" id="btn-folios" onclick="showSection('folios')">Ver Folios</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- SECCIÓN: NUEVA PRENDA -->
+    <section id="sec-nueva" class="section active">
+      <div class="card form-card">
+        <div class="card-header">
+          <h2>Registrar Prenda</h2>
+          <p class="subtitle">Ingresa los datos de la prenda a llevar a tintorería</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="folio">N° de Folio</label>
+            <div class="input-wrap">
+              <span class="input-icon">#</span>
+              <input type="text" id="folio" placeholder="Ej: 0001" autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha-entrega">Fecha de Entrega</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 1v4M12 1v4M2 8h14" stroke="currentColor" stroke-width="1.3"/></svg>
+              </span>
+              <input type="date" id="fecha-entrega"/>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="prendas">Prendas</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 18 18" fill="none"><path d="M9 2C7 2 6 4 6 5H3L4.5 16H13.5L15 5H12C12 4 11 2 9 2Z" stroke="currentColor" stroke-width="1.3"/></svg>
+              </span>
+              <input type="text" id="prendas" placeholder="Ej: 1 saco azul, 2 camisas blancas" autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="costo">Costo</label>
+            <div class="input-wrap">
+              <span class="input-icon">$</span>
+              <input type="number" id="costo" placeholder="0.00" min="0" step="0.01"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha-recoleccion">Fecha de Recolección</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 1v4M12 1v4M2 8h14" stroke="currentColor" stroke-width="1.3"/><path d="M6 12l2 2 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              </span>
+              <input type="date" id="fecha-recoleccion"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="clearForm()">Limpiar</button>
+          <button class="btn-primary" onclick="guardarPrenda()">
+            <svg viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Guardar Registro
+          </button>
+        </div>
+      </div>
+
+      <!-- Últimos registros -->
+      <div class="card recent-card">
+        <h3>Registros Recientes</h3>
+        <div id="recent-list" class="recent-list"></div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: FOLIOS -->
+    <section id="sec-folios" class="section">
+      <div class="card folios-card">
+        <div class="card-header folios-header">
+          <div>
+            <h2>Gestión de Folios</h2>
+            <p class="subtitle">Marca los folios recolectados o elimínalos</p>
+          </div>
+          <div class="folios-stats" id="folios-stats"></div>
+        </div>
+
+        <div class="filter-bar">
+          <input type="text" id="search-folio" placeholder="Buscar folio o prenda..." oninput="renderFolios()" />
+          <div class="filter-chips">
+            <button class="chip active" onclick="setFilter('todos', this)">Todos</button>
+            <button class="chip" onclick="setFilter('pendiente', this)">Pendientes</button>
+            <button class="chip" onclick="setFilter('recolectado', this)">Recolectados</button>
+          </div>
+        </div>
+
+        <div id="folios-list" class="folios-list"></div>
+
+        <div class="folios-actions">
+          <button class="btn-danger" onclick="borrarRecolectados()">
+            <svg viewBox="0 0 18 18" fill="none"><path d="M4 5h10M7 5V3h4v2M6 5l.5 10H11.5L12 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Borrar Recolectados
+          </button>
+          <button class="btn-secondary" onclick="exportarCSV()">
+            <svg viewBox="0 0 18 18" fill="none"><path d="M9 3v9M6 9l3 3 3-3M4 14h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Exportar CSV
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <!-- MODAL CONFIRMAR -->
+  <div id="modal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3 id="modal-title">Confirmar acción</h3>
+      <p id="modal-msg"></p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button class="btn-danger" id="modal-confirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
