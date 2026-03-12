@@ -13,6 +13,25 @@ import {
   doc,
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0ef8Klyc5Z22ecdEBfitLF97Qpk8hXxk",
+    authDomain: "tintoreria-web.firebaseapp.com",
+    projectId: "tintoreria-web",
+    storageBucket: "tintoreria-web.firebasestorage.app",
+    messagingSenderId: "236347762345",
+    appId: "1:236347762345:web:6650ff685a431ed28d2bb8"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 
 /* ===== CONFIGURACIÓN FIREBASE ===== */
 
