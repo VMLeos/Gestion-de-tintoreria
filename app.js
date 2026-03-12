@@ -345,3 +345,30 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRecent();
 
 });
+function startRealtimeListener() {
+
+  setSyncStatus('loading');
+
+  onSnapshot(prendasRef, snapshot => {
+
+    _db = snapshot.docs.map(d => ({
+      id: d.id,
+      ...d.data()
+    }));
+
+    setSyncStatus('idle');
+
+    renderRecent();
+
+    if (document.getElementById('sec-folios').classList.contains('active')) {
+      renderFolios();
+    }
+
+  }, error => {
+
+    console.error("Firestore realtime error:", error);
+    setSyncStatus('error');
+
+  });
+
+}
