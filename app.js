@@ -9,7 +9,7 @@
 const GH_CONFIG = {
   owner: 'VMLeos',       // tu usuario de GitHub
   repo:  'Gestion-de-tintoreria',   // nombre del repositorio
-  token: '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',  // Personal Access Token (ver README)
+  token: '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',  // Personal Access Token (ver README)
   file:  'db.json'           // archivo de base de datos
 };
 
