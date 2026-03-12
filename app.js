@@ -32,6 +32,9 @@ import {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script>
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const prendasRef = collection(db, "prendas");
 
 /* ===== CONFIGURACIÓN FIREBASE ===== */
 
