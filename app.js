@@ -8,7 +8,7 @@
 // Edita estos valores con los de tu repositorio:
 const GH_CONFIG = {
   owner: 'VMLeos',       // tu usuario de GitHub
-  repo:  'tintoreria-app',   // nombre del repositorio
+  repo:  'Gestion-de-tintoreria',   // nombre del repositorio
   token: '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',  // Personal Access Token (ver README)
   file:  'db.json'           // archivo de base de datos
 };
