@@ -7,9 +7,9 @@
 // ---- CONFIGURACIÓN GITHUB ----
 // Edita estos valores con los de tu repositorio:
 const GH_CONFIG = {
-  owner: 'TU_USUARIO',       // tu usuario de GitHub
+  owner: 'VMLeos',       // tu usuario de GitHub
   repo:  'tintoreria-app',   // nombre del repositorio
-  token: 'TU_GITHUB_TOKEN',  // Personal Access Token (ver README)
+  token: 'VicGitHub#1',  // Personal Access Token (ver README)
   file:  'db.json'           // archivo de base de datos
 };
 
