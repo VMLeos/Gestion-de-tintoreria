@@ -3,15 +3,14 @@
    Base de datos: Firebase Firestore
 ================================================ */
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
   updateDoc,
   deleteDoc,
-  doc
+  doc,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 /* ===== CONFIGURACIÓN FIREBASE =====
